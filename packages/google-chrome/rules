@@ -75,17 +75,26 @@ EOF
         chmod 0755 "${upstream_dir}"
         ;;
     download)
-        # Tested with version 48.0.2564.82.
+        # Tested with version 48.0.2564.116.
         upstream_pack=$1
         baseurl="https://dl.google.com/linux/chrome/deb"
         tmpfile=$(mktemp)
+
+        # If we are running x86_64 kernel, we can install the amd64-version
+        # of google-chrome.
+        if [ "$(uname -m)" = "x86_64" ]; then
+            pkg_arch=amd64
+        else
+            pkg_arch=$(dpkg --print-architecture)
+        fi
+
         wget \
             --no-use-server-timestamps \
             --no-check-certificate \
             --no-cookies \
             --output-document "${tmpfile}" \
             --progress=dot:mega \
-            "${baseurl}/dists/stable/main/binary-i386/Packages" || {
+            "${baseurl}/dists/stable/main/binary-${pkg_arch}/Packages" || {
             wget_err=$?
             rm -f "${tmpfile}" || true
             [ ${wget_err} -eq 4 ] && exit 2 ## Network failure.
