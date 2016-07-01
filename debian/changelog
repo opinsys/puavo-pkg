@@ -1,3 +1,11 @@
+puavo-pkg (0.1.40) trusty; urgency=medium
+
+  * New release
+  * Fix Oracle Java's upstream pack checksum
+  * Git(87567b7c46635ed0360b0a4983309cf7f627da35)
+
+ -- Tuomas Räsänen <tuomasjjrasanen@tjjr.fi>  Fri, 01 Jul 2016 10:11:00 +0300
+
 puavo-pkg (0.1.39) trusty; urgency=medium
 
   * New release
