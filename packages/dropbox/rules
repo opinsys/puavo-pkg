@@ -15,6 +15,7 @@ case "${command}" in
         rm -f /var/lib/dropbox/.dropbox-dist
         ;;
     unpack)
+        # Tested on 2016-08-24 (introduced this line to trigger Dropbox update).
         tar --no-same-owner -z -x -f "$1" -C "$2"
 
         ## Fix upstream pack: upstream distributes the file as only
