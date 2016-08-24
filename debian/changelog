@@ -1,3 +1,9 @@
+puavo-pkg (0.1.41) trusty; urgency=medium
+
+  * New release: update chrome, dropbox, flash, java.
+
+ -- Juha Erkkilä <Juha.Erkkila@opinsys.fi>  Wed, 24 Aug 2016 11:31:59 +0300
+
 puavo-pkg (0.1.40) trusty; urgency=medium
 
   * New release
