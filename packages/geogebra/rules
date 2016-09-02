@@ -55,6 +55,26 @@ links='
 /usr/share/pixmaps/geogebra.png
 '
 
+add_geogebra_wrapper() {
+  mv /usr/bin/geogebra /usr/bin/geogebra.orig
+  cat <<'EOF' > /usr/bin/geogebra
+#!/bin/sh
+
+set -eu
+
+# use system java instead of Geogebra internal, if system java is executable
+
+javacmd=$(which java || true)
+if [ -n "$javacmd" -a -x "$javacmd" ]; then
+  JAVACMD=$javacmd
+  export JAVACMD
+fi
+
+exec /usr/bin/geogebra.orig
+EOF
+  chmod 755 /usr/bin/geogebra
+}
+
 case "${command}" in
     configure)
         upstream_dir=$1
@@ -64,9 +84,11 @@ case "${command}" in
             mkdir -p "${dir}"
             ln -s -f -T "${upstream_dir}${f}" "${f}"
         done
+
+        add_geogebra_wrapper
         ;;
     unconfigure)
-        rm -f ${links}
+        rm -f ${links} /usr/bin/geogebra.orig
         ;;
     unpack)
         upstream_pack=$1
