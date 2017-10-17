@@ -1,3 +1,9 @@
+puavo-pkg (0.1.42) trusty; urgency=medium
+
+  * New release: added garbage collection.
+
+ -- Juha Erkkilä <Juha.Erkkila@opinsys.fi>  Tue, 17 Oct 2017 10:22:32 +0300
+
 puavo-pkg (0.1.41) trusty; urgency=medium
 
   * New release: update chrome, dropbox, flash, java.
